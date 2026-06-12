@@ -70,3 +70,43 @@ export const getMe = async (req, res) => {
   const user = await User.findById(req.user.id).select("-password");
   res.json(user);
 };
+
+export const register = async (req, res) => {
+  const { name, mobile, email, password } = req.body;
+
+  if (!name || !mobile || !email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  try {
+    const exists = await User.findOne({ $or: [{ email }, { mobile }] });
+    if (exists) {
+      return res.status(400).json({ message: "User with this email or mobile number already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({
+      name,
+      mobile,
+      email,
+      password: hashedPassword,
+      role: "customer",
+      isActive: true
+    });
+
+    const token = generateToken({
+      id: user._id,
+      role: user.role,
+      name: user.name,
+      email: user.email
+    });
+
+    res.status(201).json({
+      token,
+      user: { id: user._id, name: user.name, role: user.role, email: user.email, mobile: user.mobile }
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+

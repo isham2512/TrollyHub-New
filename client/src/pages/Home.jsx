@@ -25,7 +25,7 @@ export default function Home() {
           <Link to="/login" className="btn btn-ghost" style={{padding:"10px 24px"}}>
             Log In
           </Link>
-          <Link to="/login" className="btn btn-primary" style={{padding:"10px 24px"}}>
+          <Link to="/signup" className="btn btn-primary" style={{padding:"10px 24px"}}>
             Get Started
           </Link>
         </div>
@@ -42,7 +42,7 @@ export default function Home() {
             Trolly Hub helps you manage billing, inventory, orders and reports in one simple platform.
           </p>
           <div className="hero-actions">
-            <Link to="/login" className="btn btn-primary" style={{padding:"14px 28px", fontSize:15}}>
+            <Link to="/signup" className="btn btn-primary" style={{padding:"14px 28px", fontSize:15}}>
               Get Started
             </Link>
             <Link to="/login" className="btn btn-ghost" style={{padding:"14px 28px", fontSize:15}}>
@@ -134,7 +134,7 @@ export default function Home() {
           <h2>Start managing your store today</h2>
           <p>Join thousands of businesses using Trolly Hub.</p>
         </div>
-        <Link to="/login" className="btn btn-primary" style={{padding:"16px 32px", fontSize:16}}>
+        <Link to="/signup" className="btn btn-primary" style={{padding:"16px 32px", fontSize:16}}>
           Create Account →
         </Link>
       </footer>

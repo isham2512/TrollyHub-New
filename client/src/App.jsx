@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home";
 import LoginSelect from "./pages/LoginSelect";
+import Signup from "./pages/Signup";
 import StaffLogin from "./pages/StaffLogin";
 import CustomerLogin from "./pages/CustomerLogin";
 import Dashboard from "./pages/Dashboard";
@@ -28,6 +29,7 @@ export default function App() {
   const getRouteGroup = (path) => {
     if (path === "/") return "home";
     if (path.startsWith("/login")) return "login";
+    if (path.startsWith("/signup")) return "signup";
     return "app";
   };
 
@@ -40,6 +42,7 @@ export default function App() {
       <Routes location={location} key={routeGroup}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/login" element={<PageTransition><LoginSelect /></PageTransition>} />
+        <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
         <Route path="/login/:role" element={<PageTransition><StaffLogin /></PageTransition>} />
         <Route path="/login/customer" element={<PageTransition><CustomerLogin /></PageTransition>} />
         <Route path="/unauthorized" element={<PageTransition><Unauthorized /></PageTransition>} />
