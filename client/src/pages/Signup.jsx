@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../api";
+import { useAuth } from "../context/AuthContext";
 import "./LoginSelect.css";
 
 const EyeOpen = () => (
@@ -26,6 +26,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { registerUser } = useAuth();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -33,8 +34,8 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      await api.post("/auth/register", { name, mobile, email, password });
-      navigate("/login", { state: { message: "Account created successfully! Please sign in below." } });
+      await registerUser({ name, mobile, email, password });
+      navigate("/customer/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed. Please verify your details.");
     } finally {

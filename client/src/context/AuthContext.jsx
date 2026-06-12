@@ -50,10 +50,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const registerUser = async (payload) => {
+    setLoading(true);
+    try {
+      const { data } = await api.post("/auth/register", payload);
+      setAuth(data);
+      return data;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = () => setAuth(null);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, loading, loginStaff, requestCustomerOtp, verifyCustomerOtp, logout }}>
+    <AuthContext.Provider value={{ auth, setAuth, loading, loginStaff, requestCustomerOtp, verifyCustomerOtp, registerUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
