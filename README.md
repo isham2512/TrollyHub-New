@@ -2,6 +2,9 @@
 
 Trolly Hub is a full stack supermarket management system built with React, Node.js, Express, and MongoDB.
 
+## Live Demo
+https://trolly-hub-new.vercel.app/
+
 ## Features
 - Role-based authentication: Admin, Manager, Employee, Customer
 - JWT auth for staff
